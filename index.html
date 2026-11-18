@@ -9,7 +9,7 @@
 :root{--bg:#101820;--panel:#1b2935;--panel2:#243543;--text:#edf4f7;--muted:#a9bbc6;--line:#405461;--accent:#f2a93b;--green:#62c69a;--red:#f17b70}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#101820,#172632);color:var(--text);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 main{max-width:1100px;margin:auto;padding:20px}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px}.eyebrow{font-size:12px;letter-spacing:.13em;color:var(--accent);font-weight:800}.title{font-size:clamp(23px,4vw,34px);font-weight:850;margin:3px 0}.sub{color:var(--muted);font-size:14px}
-.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:14px;min-width:0}.statlabel{font-size:12px;color:var(--muted)}.statval{font-size:20px;font-weight:800;margin-top:3px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:14px;min-width:0}.statlabel{font-size:12px;color:var(--muted)}.statval{font-size:20px;font-weight:800;margin-top:3px}
 .layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:14px}.section-title{font-weight:800;margin-bottom:10px;display:flex;justify-content:space-between;gap:8px;align-items:center}.badge{font-size:11px;border:1px solid var(--line);border-radius:99px;padding:4px 9px;color:var(--muted);white-space:nowrap}
 button,select{font:inherit;color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;min-height:42px}button:hover:not(:disabled){border-color:var(--accent)}button:focus-visible,select:focus-visible{outline:3px solid #f2a93b88;outline-offset:2px}button:disabled{opacity:.4;cursor:not-allowed}.primary{background:var(--accent);color:#18212a;border-color:var(--accent);font-weight:800}.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.machine{display:block;width:100%;max-width:480px;margin:0 auto}.machine [data-part]{cursor:pointer;stroke:#14232c;stroke-width:2;transition:opacity .15s}.machine [data-part].chosen{stroke:var(--accent);stroke-width:4}.machine [data-part].removed{opacity:.10;pointer-events:none}.hint{color:var(--muted);font-size:12px;text-align:center;margin-top:4px}.progress{height:9px;background:#344754;border-radius:99px;overflow:hidden;margin:8px 0}.progress span{display:block;height:100%;width:0;background:var(--green);transition:width .2s}.parts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;max-height:470px;overflow:auto;padding-right:2px}.part{width:100%;text-align:left;display:flex;align-items:center;gap:9px;padding:9px;background:#22313d}.part.active{border-color:var(--accent);background:#3b3528}.part.done{border-color:#427b67}.part small{display:block;color:var(--muted);font-size:11px}.detail{min-height:165px}.detail p{margin:5px 0 10px}.muted{color:var(--muted)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.message{font-size:13px;color:var(--muted);margin-top:10px;min-height:38px}.tool-list{display:flex;flex-wrap:wrap;gap:7px}.tool{border:1px solid var(--line);border-radius:99px;padding:5px 9px;font-size:12px;color:var(--muted)}.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.step{background:var(--panel2);border-radius:9px;padding:9px;font-size:13px}.footer{font-size:12px;color:var(--muted);margin:16px 0 4px}.cyclebox{background:var(--panel2);border-radius:10px;padding:11px;min-height:74px;font-size:14px}.success{color:var(--green);font-weight:800}.warn{color:#ffd18a}
 @media(max-width:760px){main{padding:13px}.layout{grid-template-columns:1fr}.parts{max-height:350px}.stats{gap:7px}.card{padding:11px}.statval{font-size:17px}}
@@ -136,18 +136,53 @@ button,select{font:inherit;color:var(--text);background:var(--panel2);border:1px
   .mission-steps{grid-template-columns:1fr}
 }
 
+
+/* Fitur tambahan: layar pembuka, skor, panduan interaktif, dan kontrol audio */
+.intro-screen{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:18px;background:radial-gradient(circle at 50% 25%,#294657 0,#101820 65%);}
+.intro-card{width:min(680px,100%);padding:clamp(22px,5vw,42px);border:1px solid #617887;border-radius:22px;background:linear-gradient(145deg,#243b49,#14232d);box-shadow:0 24px 80px #0009;text-align:center}
+.intro-mark{font-size:52px}.intro-card h1{font-size:clamp(28px,6vw,44px);line-height:1.1;margin:10px 0}.intro-card p{color:var(--muted);max-width:520px;margin:10px auto 20px}.intro-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}.intro-card .primary{min-width:190px}
+.score-card{background:linear-gradient(145deg,#3b3528,#243543);border-color:#8c7042}
+.top-actions{display:flex;gap:8px;flex-wrap:wrap}
+.guide-box{margin-top:12px;padding:14px;border:1px solid #617887;border-radius:12px;background:#14232d}
+.guide-box h3{margin:0 0 7px;color:#ffd18a}.guide-box p{margin:0 0 10px;color:var(--muted);font-size:13px}.guide-progress{height:7px;border-radius:20px;background:#344754;overflow:hidden;margin:8px 0}.guide-progress span{display:block;height:100%;width:0;background:var(--green);transition:width .2s}
+.guide-actions{display:flex;gap:8px;flex-wrap:wrap}.guide-actions button{font-size:13px}
+#soundToggle.active{border-color:var(--green);color:#8ce0b5}
+.engine-stage.running-engine{animation:engineVibration .12s infinite alternate}
+@keyframes engineVibration{from{transform:translateX(-.35px)}to{transform:translateX(.35px)}}
+#exhaustPuff{opacity:0;transition:opacity .1s}
+#flame.firing{opacity:1;animation:flameFlicker .09s infinite alternate}
+@media(max-width:600px){.intro-card{padding:22px}.top-actions{width:100%}.top-actions button{flex:1}}
+
 </style>
 </head>
 <body>
+<div class="intro-screen" id="introScreen" role="dialog" aria-modal="true" aria-labelledby="introTitle">
+  <div class="intro-card">
+    <div class="intro-mark">🏍️🔧</div>
+    <div class="eyebrow">GARASI EDUKASI • GAME INTERAKTIF</div>
+    <h1 id="introTitle">Bengkel Motor 4 Tak</h1>
+    <p>Jadilah mekanik! Pelajari komponen mesin, lakukan simulasi bongkar, bersihkan, rakit kembali, lalu uji performa mesin 4 tak.</p>
+    <div class="steps" style="text-align:left;margin:18px 0">
+      <div class="step"><b>1. Pelajari</b><br>Pilih komponen dan baca panduannya.</div>
+      <div class="step"><b>2. Bongkar</b><br>Ikuti urutan komponen dengan benar.</div>
+      <div class="step"><b>3. Bersihkan & rakit</b><br>Bersihkan semua komponen sebelum dipasang.</div>
+      <div class="step"><b>4. Uji mesin</b><br>Selesaikan misi dan kumpulkan skor.</div>
+    </div>
+    <div class="intro-actions"><button class="primary" id="playGame">▶ Mulai permainan</button><button id="introGuide">📘 Lihat panduan</button></div>
+    <p style="font-size:11px;margin-bottom:0">Simulasi edukasi skematis. Ikuti buku manual untuk pekerjaan pada mesin nyata.</p>
+  </div>
+</div>
+
 <main id="game">
   <header class="top">
     <div><div class="eyebrow">GARASI EDUKASI • SIMULATOR MEKANIK</div><div class="title">🔧 Bengkel Motor 4 Tak</div><div class="sub">Game simulasi bongkar, bersihkan, periksa, dan pasang mesin satu silinder.</div></div>
-    <button id="reset" title="Mulai ulang permainan">↻ Ulangi game</button>
+    <div class="top-actions"><button id="openGuide">📘 Panduan interaktif</button><button id="reset" title="Mulai ulang permainan">↻ Ulangi game</button></div>
   </header>
   <section class="stats" aria-label="Status permainan">
     <div class="card"><div class="statlabel">Saldo bengkel</div><div class="statval" id="money">Rp 500.000</div></div>
     <div class="card"><div class="statlabel">Pengalaman</div><div class="statval" id="xp">0 XP</div></div>
     <div class="card"><div class="statlabel">Komponen terlepas</div><div class="statval" id="count">0/16</div></div>
+    <div class="card score-card"><div class="statlabel">Skor permainan</div><div class="statval" id="scoreValue">0 poin</div><small class="muted" id="levelValue">Level: Mekanik Pemula</small></div>
   </section>
   <div class="layout">
     <div class="card">
@@ -203,6 +238,11 @@ button,select{font:inherit;color:var(--text);background:var(--panel2);border:1px
         <li>Tekan <b>Pasang komponen</b> untuk memasangnya kembali. Ikuti urutan pemasangan dari bagian dalam menuju bagian luar.</li>
       </ol>
     </div>
+    <div class="guide-box" id="interactiveGuide" hidden>
+      <h3 id="guideTitle">Panduan langkah 1/4</h3><p id="guideText">Pilih komponen terluar untuk memulai.</p>
+      <div class="guide-progress"><span id="guideBar"></span></div>
+      <div class="guide-actions"><button id="guidePrev">← Sebelumnya</button><button class="primary" id="guideNext">Langkah berikutnya →</button><button id="guideClose">Tutup panduan</button></div>
+    </div>
     <div class="message" id="message" aria-live="polite">Mulai dari komponen terluar. Ikuti urutan pembongkaran dan jangan memaksa komponen.</div>
   </section>
   <section class="card" style="margin-top:14px">
@@ -227,7 +267,7 @@ button,select{font:inherit;color:var(--text);background:var(--panel2);border:1px
 <section class="sim-panel" id="simEngine">
 <div class="section-title"><span>🏍️ Simulasi mesin hidup & performa</span><span class="badge">4 tak • 1 silinder</span></div>
 <div class="sim-grid"><div>
-<div class="engine-stage"><svg viewBox="0 0 360 280" role="img" aria-label="Animasi piston, poros engkol dan katup mesin">
+<div class="engine-stage" id="engineStage"><svg viewBox="0 0 360 280" role="img" aria-label="Animasi piston, poros engkol dan katup mesin">
 <defs><linearGradient id="simMetal" x2="1" y2="1"><stop stop-color="#d5dfe4"/><stop offset="1" stop-color="#758b98"/></linearGradient><radialGradient id="heatGrad"><stop stop-color="#ffb23e" stop-opacity=".8"/><stop offset="1" stop-color="#f04428" stop-opacity="0"/></radialGradient></defs>
 <ellipse id="engineGlow" cx="180" cy="105" rx="115" ry="110" fill="url(#heatGrad)"/>
 <rect x="112" y="55" width="136" height="150" rx="8" fill="#526b78" stroke="#c6d2d8" stroke-width="3"/><rect x="128" y="63" width="104" height="128" fill="#152b38" stroke="#91a5af" stroke-width="2"/>
@@ -236,6 +276,7 @@ button,select{font:inherit;color:var(--text);background:var(--panel2);border:1px
 <g id="simExhaustValve"><path d="M212 23 V75" stroke="#e6b75e" stroke-width="7"/><path d="M202 24 H222" stroke="#e6b75e" stroke-width="5"/></g>
 <path d="M180 4 V49" stroke="#e7e9e9" stroke-width="8"/><path d="M172 5 H188" stroke="#e7e9e9" stroke-width="4"/>
 <g id="flame"><path d="M157 68 Q139 42 160 29 Q158 49 176 37 Q196 22 192 58 Q211 42 205 75 Q196 94 178 88 Q160 88 157 68Z" fill="#ff6a28"/><path d="M170 69 Q164 54 179 47 Q176 61 189 56 Q194 73 181 81Z" fill="#ffe36b"/></g>
+<g id="exhaustPuff"><circle cx="218" cy="88" r="7" fill="#b8cbd3" opacity=".55"/><circle cx="232" cy="78" r="5" fill="#b8cbd3" opacity=".35"/></g>
 <g id="simPiston"><rect x="132" y="108" width="96" height="30" rx="4" fill="url(#simMetal)" stroke="#182b36" stroke-width="2"/><path d="M137 114 H223 M137 121 H223" stroke="#536a76" stroke-width="2"/></g>
 <path d="M180 138 L180 198" stroke="#d8b56b" stroke-width="12"/>
 <g id="simCrank"><circle cx="180" cy="205" r="42" fill="#647c89" stroke="#d0d9de" stroke-width="3"/><circle cx="180" cy="205" r="12" fill="#d4dce0"/><path d="M180 205 L208 180" stroke="#d8b56b" stroke-width="12" stroke-linecap="round"/><circle cx="208" cy="180" r="7" fill="#e6c77f"/></g>
@@ -243,7 +284,7 @@ button,select{font:inherit;color:var(--text);background:var(--panel2);border:1px
 <path d="M24 84 H91 M269 84 H336" stroke="#8eb5c4" stroke-width="9" stroke-linecap="round"/>
 <g fill="#d8e4e9" font-size="10"><text x="10" y="72">Masuk</text><text x="294" y="72">Buang</text><text x="12" y="275">Animasi skematis • tidak berskala</text></g></svg></div>
 <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:9px"><span class="sim-state" id="engineState">MESIN MATI</span><span class="badge" id="cycleStage">Siklus: menunggu</span></div>
-<div class="sim-buttons"><button class="go" id="startEngine">🔑 Starter / hidupkan</button><button id="stopEngine">⏹ Matikan</button><button id="repairEngine">🧰 Perbaiki mesin</button></div>
+<div class="sim-buttons"><button class="go" id="startEngine">🔑 Starter / hidupkan</button><button id="stopEngine">⏹ Matikan</button><button id="repairEngine">🧰 Perbaiki mesin</button><button id="soundToggle" aria-pressed="false">🔇 Suara mesin: mati</button></div>
 <div class="sim-note" id="simMessage" aria-live="polite">Hidupkan mesin, naikkan gas bertahap, dan pantau suhu serta pelumasan.</div>
 </div><div>
 <div class="sim-metrics">
@@ -292,12 +333,13 @@ const data=[
 ['chain','Rantai keteng','Meneruskan putaran poros engkol ke noken as untuk menjaga timing.','Atur posisi timing, lepaskan tensioner dan rantai dengan hati-hati.','Sejajarkan tanda timing dan atur ketegangan sesuai manual.','Kunci ring'],
 ['case','Bak mesin / crankcase','Rumah poros engkol, transmisi dan jalur pelumasan.','Lepaskan baut sesuai urutan lalu pisahkan dengan alat khusus.','Bersihkan bidang sambungan, gunakan sealant yang ditentukan pabrikan.','Crankcase separator']
 ];
-let selected=null,removed=new Set(),cleaned=new Set(),money=500000,xp=0,cycleIndex=-1,finished=false;
+let selected=null,removed=new Set(),cleaned=new Set(),money=500000,xp=0,score=0,cycleIndex=-1,finished=false;
+function addScore(n){score+=n;}
 const $=id=>document.getElementById(id), fmt=n=>'Rp '+n.toLocaleString('id-ID');
 function canRemove(id){let i=data.findIndex(x=>x[0]===id);return data.slice(0,i).every(x=>removed.has(x[0]));}
 function canInstall(id){let i=data.findIndex(x=>x[0]===id);return data.slice(i+1).every(x=>!removed.has(x[0]));}
 function render(){
- $('money').textContent=fmt(money);$('xp').textContent=xp+' XP';$('count').textContent=removed.size+'/'+data.length;
+ $('money').textContent=fmt(money);$('xp').textContent=xp+' XP';$('count').textContent=removed.size+'/'+data.length;$('scoreValue').textContent=score.toLocaleString('id-ID')+' poin';$('levelValue').textContent='Level: '+(score>=1500?'Ahli Mesin':score>=700?'Mekanik Terampil':score>=250?'Mekanik Madya':'Mekanik Pemula');
  $('progressText').textContent=Math.round(removed.size/data.length*100)+'% dibongkar';$('progress').style.width=(removed.size/data.length*100)+'%';
  $('mode').textContent=removed.size===0?'MODE BONGKAR':removed.size===data.length?'MODE PERAKITAN':'MODE BONGKAR / PASANG';
  $('parts').innerHTML='';
@@ -316,23 +358,23 @@ function select(id){
 root.querySelectorAll('[data-part]').forEach(el=>el.addEventListener('click',()=>select(el.dataset.part)));
 $('remove').addEventListener('click',()=>{
  if(!selected)return;if(!canRemove(selected)){$('message').textContent='Urutan belum benar. Lepaskan komponen yang berada di luar atau menghalangi bagian ini terlebih dahulu.';return;}
- removed.add(selected);cleaned.delete(selected);money+=5000;xp+=10;$('message').textContent='Berhasil melepas '+data.find(x=>x[0]===selected)[1]+'. Komponen berada di meja kerja.';select(selected);
+ removed.add(selected);cleaned.delete(selected);money+=5000;xp+=10;addScore(50);$('message').textContent='Berhasil melepas '+data.find(x=>x[0]===selected)[1]+'. Komponen berada di meja kerja.';select(selected);
 });
-$('clean').addEventListener('click',()=>{if(!selected)return;cleaned.add(selected);xp+=5;$('message').textContent='Komponen dibersihkan. Periksa kondisinya sebelum dipasang kembali.';select(selected);});
+$('clean').addEventListener('click',()=>{if(!selected)return;cleaned.add(selected);xp+=5;addScore(25);$('message').textContent='Komponen dibersihkan. Periksa kondisinya sebelum dipasang kembali.';select(selected);});
 $('install').addEventListener('click',()=>{
  if(!selected)return;if(!canInstall(selected)){$('message').textContent='Pasang komponen bagian dalam terlebih dahulu.';return;}
  if(!cleaned.has(selected)){$('message').textContent='Bersihkan komponen sebelum memasangnya.';return;}
- removed.delete(selected);money=Math.max(0,money-2000);xp+=15;$('message').textContent='Berhasil memasang '+data.find(x=>x[0]===selected)[1]+'.';select(selected);
+ removed.delete(selected);money=Math.max(0,money-2000);xp+=15;addScore(75);$('message').textContent='Berhasil memasang '+data.find(x=>x[0]===selected)[1]+'.';select(selected);
 });
 const cycles=[['1. LANGKAH HISAP','Piston bergerak dari TMA ke TMB. Katup masuk terbuka dan katup buang tertutup. Campuran udara dan bahan bakar masuk ke silinder.'],['2. LANGKAH KOMPRESI','Piston bergerak dari TMB ke TMA. Kedua katup tertutup. Campuran dimampatkan; busi memercik menjelang TMA.'],['3. LANGKAH USAHA','Pembakaran mendorong piston dari TMA ke TMB. Kedua katup tertutup. Tenaga diteruskan ke poros engkol.'],['4. LANGKAH BUANG','Piston bergerak dari TMB ke TMA. Katup buang terbuka dan gas hasil pembakaran keluar. Siklus berulang.']];
 $('cycle').addEventListener('click',()=>{cycleIndex=(cycleIndex+1)%4;$('cycleInfo').innerHTML='<b>'+cycles[cycleIndex][0]+'</b><br>'+cycles[cycleIndex][1];});
 $('order').addEventListener('click',()=>{$('cycleInfo').innerHTML='<b>Urutan simulasi:</b> cover dan oli → busi dan saluran → kepala silinder → mekanisme katup → gasket dan blok silinder → piston dan batang penghubung → rantai keteng, roda gigi, poros engkol → bak mesin. Urutan ini disederhanakan untuk pembelajaran; konstruksi tiap motor bisa berbeda.';});
 $('test').addEventListener('click',()=>{
  if(removed.size!==0||cleaned.size!==data.length){$('testResult').textContent='Belum siap. Pastikan seluruh komponen terpasang kembali dan sudah dibersihkan.';return;}
- finished=true;xp+=100;money+=50000;$('testResult').innerHTML='<div class="success">🏆 MESIN BERHASIL DIRAKIT!</div><p>Simulasi starter berhasil. Dalam game, kompresi, timing, pengapian, dan pelumasan dianggap normal. Bonus +100 XP dan Rp 50.000.</p>';$('mission').textContent='Misi selesai! Kamu berhasil menyelesaikan simulasi overhaul mesin 4 tak.';render();
+ finished=true;xp+=100;money+=50000;addScore(500);$('testResult').innerHTML='<div class="success">🏆 MESIN BERHASIL DIRAKIT!</div><p>Simulasi starter berhasil. Dalam game, kompresi, timing, pengapian, dan pelumasan dianggap normal. Bonus +100 XP dan Rp 50.000.</p>';$('mission').textContent='Misi selesai! Kamu berhasil menyelesaikan simulasi overhaul mesin 4 tak.';render();
 });
 $('reset').addEventListener('click',()=>{
- selected=null;removed.clear();cleaned.clear();money=500000;xp=0;cycleIndex=-1;finished=false;
+ selected=null;removed.clear();cleaned.clear();money=500000;xp=0;score=0;cycleIndex=-1;finished=false;
  $('detail').innerHTML='<div class="muted">Pilih komponen dari gambar atau daftar untuk melihat detailnya.</div>';$('message').textContent='Game dimulai ulang. Mulai dari komponen terluar.';$('cycleInfo').textContent='Siklus mesin empat langkah terdiri dari hisap, kompresi, usaha, dan buang.';$('testResult').textContent='';$('mission').textContent='Lepaskan semua komponen, bersihkan, lalu pasang kembali dengan urutan yang benar. Setelah itu lakukan uji mesin.';render();
 });
 render();
@@ -346,15 +388,20 @@ const $=id=>document.getElementById(id),clamp=(v,a,b)=>Math.max(a,Math.min(b,v))
 let running=false,broken=false,rpm=0,temp=28,health=100,phase=0,last=0,frame=0,history=[],raf=0;
 const throttle=$('throttle'),load=$('load'),cooling=$('cooling'),oil=$('oilCondition');
 const fmt=(v,d=0)=>Number(v).toFixed(d).replace('.',',');
+let soundEnabled=false,audioCtx=null,engineOsc=null,engineOsc2=null,engineGain=null;
+function startEngineSound(){if(!soundEnabled)return;try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioCtx=audioCtx||new AC();if(audioCtx.state==='suspended')audioCtx.resume();if(engineOsc)return;engineOsc=audioCtx.createOscillator();engineOsc2=audioCtx.createOscillator();engineGain=audioCtx.createGain();const filter=audioCtx.createBiquadFilter();filter.type='lowpass';filter.frequency.value=180;engineOsc.type='sawtooth';engineOsc2.type='triangle';engineOsc.frequency.value=38;engineOsc2.frequency.value=76;engineGain.gain.value=.018;engineOsc.connect(filter);engineOsc2.connect(filter);filter.connect(engineGain);engineGain.connect(audioCtx.destination);engineOsc.start();engineOsc2.start();}catch(e){$('simMessage').textContent='Audio tidak tersedia pada browser ini. Simulasi tetap bisa dimainkan.';}}
+function stopEngineSound(){if(engineOsc){try{engineOsc.stop();engineOsc2.stop();}catch(e){}engineOsc=null;engineOsc2=null;engineGain=null;}}
+function updateEngineSound(){if(engineOsc&&audioCtx){const base=35+Math.max(0,rpm)/100;engineOsc.frequency.setTargetAtTime(base,audioCtx.currentTime,.08);engineOsc2.frequency.setTargetAtTime(base*2,audioCtx.currentTime,.08);}}
+$('soundToggle').addEventListener('click',()=>{soundEnabled=!soundEnabled;$('soundToggle').classList.toggle('active',soundEnabled);$('soundToggle').setAttribute('aria-pressed',String(soundEnabled));$('soundToggle').textContent=soundEnabled?'🔊 Suara mesin: aktif':'🔇 Suara mesin: mati';if(soundEnabled&&running)startEngineSound();else stopEngineSound();});
 function labels(){$('throttleText').textContent=throttle.value+'%';$('loadText').textContent=load.value+'%';$('coolText').textContent=cooling.value<30?'Buruk':cooling.value<65?'Sedang':'Normal';$('oilText').textContent=oil.value<25?'Kritis':oil.value<55?'Kurang':oil.value<80?'Cukup':'Baik';}
 function state(t,c=''){$('engineState').textContent=t;$('engineState').className='sim-state '+c;}
 function display(){
  $('rpmValue').textContent=Math.round(rpm).toLocaleString('id-ID')+' RPM';$('tempValue').textContent=fmt(temp)+' °C';$('speedValue').textContent=Math.round(rpm/100)+' km/j';
  $('oilValue').textContent=fmt(running?Math.max(0,rpm/1000*(.35+oil.value/100*.55)):0,1)+' bar';$('loadValue').textContent=load.value+'%';$('healthValue').textContent=Math.round(health)+'%';
- $('simEngine').classList.toggle('hot',temp>=115);$('startEngine').disabled=running||broken;$('stopEngine').disabled=!running;$('repairEngine').disabled=!broken&&health>=100;
+ $('simEngine').classList.toggle('hot',temp>=115);updateEngineSound();$('startEngine').disabled=running||broken;$('stopEngine').disabled=!running;$('repairEngine').disabled=!broken&&health>=100;
 }
 function chart(){let c=$('rpmChart'),x=c.getContext('2d'),w=c.width,h=c.height;x.clearRect(0,0,w,h);x.strokeStyle='#405461';for(let i=0;i<5;i++){let y=10+i*(h-25)/4;x.beginPath();x.moveTo(35,y);x.lineTo(w-12,y);x.stroke();}x.fillStyle='#a9bbc6';x.font='11px sans-serif';x.fillText('10k',3,15);x.fillText('5k',8,h/2);x.fillText('0',19,h-13);[[ 'rpm',10000,'#f2a93b'],['temp',150,'#f17b70']].forEach(([k,m,col])=>{x.beginPath();x.strokeStyle=col;x.lineWidth=2;history.forEach((v,i)=>{let px=35+i*(w-50)/Math.max(1,history.length-1),py=h-15-clamp(v[k]/m,0,1)*(h-30);i?x.lineTo(px,py):x.moveTo(px,py);});x.stroke();});}
-function motion(dt){if(!running)return;let cps=rpm/120;phase=(phase+cps*dt*2*Math.PI)%(2*Math.PI);let y=Math.sin(phase)*22;$('simPiston').setAttribute('transform','translate(0 '+y.toFixed(1)+')');$('simCrank').setAttribute('transform','rotate('+((phase*180/Math.PI)%360).toFixed(2)+' 180 205)');let p=phase/(2*Math.PI);$('simIntakeValve').setAttribute('transform',p<.25?'translate(0 9)':'translate(0 0)');$('simExhaustValve').setAttribute('transform',p>=.75?'translate(0 9)':'translate(0 0)');$('cycleStage').textContent='Siklus: '+['HISAP','KOMPRESI','USAHA','BUANG'][Math.floor(p*4)];}
+function motion(dt){if(!running)return;let cps=rpm/120;phase=(phase+cps*dt*2*Math.PI)%(2*Math.PI);let y=Math.sin(phase)*22;$('simPiston').setAttribute('transform','translate(0 '+y.toFixed(1)+')');$('simCrank').setAttribute('transform','rotate('+((phase*180/Math.PI)%360).toFixed(2)+' 180 205)');let p=phase/(2*Math.PI);let intake=p<.25,exhaust=p>=.75;$('simIntakeValve').setAttribute('transform',intake?'translate(0 9)':'translate(0 0)');$('simExhaustValve').setAttribute('transform',exhaust?'translate(0 9)':'translate(0 0)');let firing=p>=.25&&p<.31;$('flame').classList.toggle('firing',firing);$('exhaustPuff').setAttribute('transform','translate('+((p>.75?(p-.75)*38:0)).toFixed(1)+' '+(p>.75?-(p-.75)*18:0).toFixed(1)+')');$('exhaustPuff').style.opacity=exhaust?'1':'0';$('engineStage').classList.toggle('running-engine',running);$('cycleStage').textContent='Siklus: '+['HISAP','KOMPRESI','USAHA','BUANG'][Math.floor(p*4)];}
 function tick(now){if(!running)return;let dt=Math.min(.08,(now-last)/1000||.016);last=now;
  let t=+throttle.value,l=+load.value,c=+cooling.value,o=+oil.value,target=850+t*82-l*15;
  rpm+=(target-rpm)*Math.min(1,dt*2.4);
@@ -366,11 +413,31 @@ function tick(now){if(!running)return;let dt=Math.min(.08,(now-last)/1000||.016)
  if(health<=0||temp>=190){broken=true;running=false;rpm=0;state('MESIN JEBOL / MACET','broken');$('simMessage').textContent='💥 Kerusakan simulasi akibat panas ekstrem atau pelumasan buruk. Matikan dan pilih Perbaiki Mesin.';display();return;}
  motion(dt);display();if(++frame%8===0){history.push({rpm,temp});if(history.length>90)history.shift();chart();}raf=requestAnimationFrame(tick);
 }
-$('startEngine').addEventListener('click',()=>{if(broken)return;if(health<35){$('simMessage').textContent='Kondisi mesin terlalu buruk untuk starter. Pilih Perbaiki Mesin.';return;}running=true;last=performance.now();state('MESIN MENYALA','running');$('simMessage').textContent='Mesin hidup. Atur gas dan beban. Pantau RPM, suhu, oli, dan pendinginan.';display();cancelAnimationFrame(raf);raf=requestAnimationFrame(tick);});
-$('stopEngine').addEventListener('click',()=>{running=false;cancelAnimationFrame(raf);rpm=0;state(broken?'MESIN JEBOL / MACET':'MESIN MATI',broken?'broken':'');$('cycleStage').textContent='Siklus: berhenti';$('simMessage').textContent='Mesin dimatikan. Suhu akan turun perlahan.';display();});
-$('repairEngine').addEventListener('click',()=>{running=false;broken=false;cancelAnimationFrame(raf);rpm=0;temp=28;health=100;phase=0;history=[];frame=0;$('flame').style.opacity='0';$('simEngine').classList.remove('hot');state('MESIN MATI');$('cycleStage').textContent='Siklus: menunggu';$('simMessage').textContent='Mesin simulasi diperbaiki. Periksa pengaturan sebelum starter.';chart();display();});
+$('startEngine').addEventListener('click',()=>{if(broken)return;if(health<35){$('simMessage').textContent='Kondisi mesin terlalu buruk untuk starter. Pilih Perbaiki Mesin.';return;}running=true;last=performance.now();startEngineSound();state('MESIN MENYALA','running');$('simMessage').textContent='Mesin hidup. Atur gas dan beban. Pantau RPM, suhu, oli, dan pendinginan.';display();cancelAnimationFrame(raf);raf=requestAnimationFrame(tick);});
+$('stopEngine').addEventListener('click',()=>{running=false;stopEngineSound();$('engineStage').classList.remove('running-engine');cancelAnimationFrame(raf);rpm=0;state(broken?'MESIN JEBOL / MACET':'MESIN MATI',broken?'broken':'');$('cycleStage').textContent='Siklus: berhenti';$('simMessage').textContent='Mesin dimatikan. Suhu akan turun perlahan.';display();});
+$('repairEngine').addEventListener('click',()=>{running=false;stopEngineSound();$('engineStage').classList.remove('running-engine');broken=false;cancelAnimationFrame(raf);rpm=0;temp=28;health=100;phase=0;history=[];frame=0;$('flame').style.opacity='0';$('simEngine').classList.remove('hot');state('MESIN MATI');$('cycleStage').textContent='Siklus: menunggu';$('simMessage').textContent='Mesin simulasi diperbaiki. Periksa pengaturan sebelum starter.';chart();display();});
 [throttle,load,cooling,oil].forEach(e=>e.addEventListener('input',()=>{labels();if(running)$('simMessage').textContent='Pengaturan berubah. Pantau RPM, suhu dan kondisi mesin.';}));
 setInterval(()=>{if(!running&&!broken&&temp>28){temp=Math.max(28,temp-.35);display();}},500);labels();display();chart();
+})();
+</script>
+
+
+<script>
+(()=>{
+ const $=id=>document.getElementById(id);let guideStep=0;
+ const guide=[
+  ['Pilih komponen','Klik komponen pada gambar mesin atau daftar komponen. Baca fungsi dan petunjuknya di panel Detail komponen terpilih.'],
+  ['Lepas sesuai urutan','Tekan tombol Lepas komponen. Jika tombol belum aktif, berarti ada komponen lain yang harus dilepas lebih dahulu.'],
+  ['Bersihkan komponen','Setelah komponen terlepas, tekan Bersihkan. Setiap komponen harus dibersihkan sebelum dipasang kembali.'],
+  ['Pasang dan uji mesin','Pasang kembali komponen mengikuti urutan. Setelah semua terpasang, tekan Uji mesin / Starter untuk menyelesaikan misi.']
+ ];
+ function showGuide(){ $('interactiveGuide').hidden=false;renderGuide();$('interactiveGuide').scrollIntoView({behavior:'smooth',block:'nearest'}); }
+ function renderGuide(){ $('guideTitle').textContent='Panduan langkah '+(guideStep+1)+' dari '+guide.length+': '+guide[guideStep][0];$('guideText').textContent=guide[guideStep][1];$('guideBar').style.width=((guideStep+1)/guide.length*100)+'%';$('guidePrev').disabled=guideStep===0;$('guideNext').textContent=guideStep===guide.length-1?'Selesai ✓':'Langkah berikutnya →'; }
+ $('openGuide').addEventListener('click',showGuide);$('introGuide').addEventListener('click',()=>{$('introScreen').style.display='none';showGuide();});
+ $('guidePrev').addEventListener('click',()=>{guideStep=Math.max(0,guideStep-1);renderGuide();});
+ $('guideNext').addEventListener('click',()=>{if(guideStep<guide.length-1){guideStep++;renderGuide();}else{$('interactiveGuide').hidden=true;}});
+ $('guideClose').addEventListener('click',()=>$('interactiveGuide').hidden=true);
+ $('playGame').addEventListener('click',()=>$('introScreen').style.display='none');
 })();
 </script>
 
